@@ -1,9 +1,12 @@
 {
-	"name": "ds_sink_customers",
+	"name": "ds_raw_customers",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_dl_data_engineering",
 			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "02_raw"
 		},
 		"annotations": [],
 		"type": "DelimitedText",

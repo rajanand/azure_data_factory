@@ -1,9 +1,12 @@
 {
-	"name": "ds_customers",
+	"name": "ds_landing_customers",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_st_data_engineering",
 			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "01_landing"
 		},
 		"annotations": [],
 		"type": "Json",
