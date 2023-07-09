@@ -1,0 +1,22 @@
+{
+	"name": "ds_sink_customers",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_dl_data_engineering",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "structured"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": false,
+			"quoteChar": null
+		},
+		"schema": []
+	}
+}
