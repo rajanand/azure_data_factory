@@ -1,0 +1,22 @@
+{
+	"name": "ds_order_items",
+	"properties": {
+		"description": "order_items csv file contains the line item level data.",
+		"linkedServiceName": {
+			"referenceName": "ls_st_data_engineering",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
