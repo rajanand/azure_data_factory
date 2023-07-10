@@ -1,0 +1,21 @@
+{
+	"name": "ds_demo",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_dl_data_engineering",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "00_demo"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "demo"
+			}
+		},
+		"schema": {}
+	}
+}

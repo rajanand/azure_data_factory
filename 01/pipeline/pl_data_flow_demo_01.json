@@ -1,0 +1,37 @@
+{
+	"name": "pl_data_flow_demo_01",
+	"properties": {
+		"description": "This is a pipeline to experiment mapping data flow functionality. ",
+		"activities": [
+			{
+				"name": "web_get_nationality",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://api.nationalize.io/?name=divya",
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "GET"
+				}
+			}
+		],
+		"parameters": {
+			"name": {
+				"type": "string"
+			}
+		},
+		"annotations": [
+			"demo"
+		]
+	}
+}
