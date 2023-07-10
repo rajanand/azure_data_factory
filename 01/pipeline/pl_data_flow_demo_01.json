@@ -5,6 +5,7 @@
 		"activities": [
 			{
 				"name": "web_get_nationality",
+				"description": "To find out the nationality using the nationalize.io api.",
 				"type": "WebActivity",
 				"dependsOn": [],
 				"policy": {
