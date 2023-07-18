@@ -17,7 +17,10 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"url": "https://api.nationalize.io/?name=divya",
+					"url": {
+						"value": "@concat('https://api.nationalize.io/?name=', encodeURIComponent(pipeline().parameters.name))\n",
+						"type": "Expression"
+					},
 					"connectVia": {
 						"referenceName": "AutoResolveIntegrationRuntime",
 						"type": "IntegrationRuntimeReference"
