@@ -1,0 +1,85 @@
+{
+	"name": "pl_lookup_demo",
+	"properties": {
+		"activities": [
+			{
+				"name": "If Condition",
+				"type": "IfCondition",
+				"dependsOn": [],
+				"typeProperties": {
+					"expression": {
+						"value": "1=1",
+						"type": "Expression"
+					},
+					"ifFalseActivities": [
+						{
+							"name": "Wait 5s",
+							"type": "Wait",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 5
+							}
+						},
+						{
+							"name": "Set variable to false",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "Wait 5s",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "pipelineReturnValue",
+								"value": [
+									{
+										"key": "condition_out",
+										"value": {
+											"type": "Boolean",
+											"content": false
+										}
+									}
+								],
+								"setSystemVariable": true
+							}
+						}
+					],
+					"ifTrueActivities": [
+						{
+							"name": "Set variable value to true",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "pipelineReturnValue",
+								"value": [
+									{
+										"key": "condition_out",
+										"value": {
+											"type": "Boolean",
+											"content": true
+										}
+									}
+								],
+								"setSystemVariable": true
+							}
+						}
+					]
+				}
+			}
+		],
+		"annotations": []
+	}
+}
