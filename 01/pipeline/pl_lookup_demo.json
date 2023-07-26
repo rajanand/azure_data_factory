@@ -6,9 +6,10 @@
 				"name": "If Condition",
 				"type": "IfCondition",
 				"dependsOn": [],
+				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "1=1",
+						"value": "@if(equals(1, 1),'yes','no' )",
 						"type": "Expression"
 					},
 					"ifFalseActivities": [
@@ -80,6 +81,12 @@
 				}
 			}
 		],
+		"parameters": {
+			"enter_a_number": {
+				"type": "Int",
+				"defaultValue": 10
+			}
+		},
 		"annotations": []
 	}
 }
