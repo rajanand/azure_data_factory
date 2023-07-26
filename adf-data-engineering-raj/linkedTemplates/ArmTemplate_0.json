@@ -18,10 +18,6 @@
 		"ls_dl_data_engineering_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://dldataengineering01.dfs.core.windows.net/"
-		},
-		"t_execute_file_copy_properties_pipeline_parameters_p_client_folder": {
-			"type": "string",
-			"defaultValue": "02_client"
 		}
 	},
 	"variables": {
@@ -124,6 +120,28 @@
 					}
 				},
 				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/t_execute_file_copy')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"type": "TumblingWindowTrigger",
+				"typeProperties": {
+					"frequency": "Minute",
+					"interval": 5,
+					"startTime": "2023-07-26T00:00:00Z",
+					"delay": "00:00:00",
+					"maxConcurrency": 50,
+					"retryPolicy": {
+						"intervalInSeconds": 30
+					},
+					"dependsOn": []
+				}
 			},
 			"dependsOn": []
 		},
@@ -1326,39 +1344,6 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_inbound')]",
 				"[concat(variables('factoryId'), '/datasets/ds_outbound')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/t_execute_file_copy')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipeline": {
-					"pipelineReference": {
-						"referenceName": "pl_parameter_variable_demo",
-						"type": "PipelineReference"
-					},
-					"parameters": {
-						"p_client_folder": "[parameters('t_execute_file_copy_properties_pipeline_parameters_p_client_folder')]"
-					}
-				},
-				"type": "TumblingWindowTrigger",
-				"typeProperties": {
-					"frequency": "Minute",
-					"interval": 5,
-					"startTime": "2023-07-26T00:00:00Z",
-					"delay": "00:00:00",
-					"maxConcurrency": 50,
-					"retryPolicy": {
-						"intervalInSeconds": 30
-					},
-					"dependsOn": []
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/pl_parameter_variable_demo')]"
 			]
 		}
 	]

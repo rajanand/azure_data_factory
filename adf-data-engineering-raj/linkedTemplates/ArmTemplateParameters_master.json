@@ -14,9 +14,6 @@
 		"ls_dl_data_engineering_properties_typeProperties_url": {
 			"value": "https://dldataengineering01.dfs.core.windows.net/"
 		},
-		"t_execute_file_copy_properties_pipeline_parameters_p_client_folder": {
-			"value": "02_client"
-		},
 		"containerUri": {
 			"value": ""
 		},
