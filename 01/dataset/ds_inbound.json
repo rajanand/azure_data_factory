@@ -1,14 +1,14 @@
 {
-	"name": "csv_file",
+	"name": "ds_inbound",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_dl_data_engineering",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"p_file_name": {
+			"client_directory_name": {
 				"type": "String",
-				"defaultValue": "csv_file.csv"
+				"defaultValue": "01_client"
 			}
 		},
 		"annotations": [],
@@ -16,10 +16,11 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileSystem": {
-					"value": "@dataset().p_file_name",
+				"folderPath": {
+					"value": "@dataset().client_directory_name",
 					"type": "Expression"
-				}
+				},
+				"fileSystem": "inbound"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
