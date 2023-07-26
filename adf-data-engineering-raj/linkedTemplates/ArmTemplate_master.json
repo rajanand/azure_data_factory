@@ -19,6 +19,10 @@
 			"type": "string",
 			"defaultValue": "https://dldataengineering01.dfs.core.windows.net/"
 		},
+		"t_execute_file_copy_properties_pipeline_parameters_p_client_folder": {
+			"type": "string",
+			"defaultValue": "02_client"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -54,6 +58,9 @@
 					},
 					"ls_dl_data_engineering_properties_typeProperties_url": {
 						"value": "[parameters('ls_dl_data_engineering_properties_typeProperties_url')]"
+					},
+					"t_execute_file_copy_properties_pipeline_parameters_p_client_folder": {
+						"value": "[parameters('t_execute_file_copy_properties_pipeline_parameters_p_client_folder')]"
 					}
 				}
 			},
