@@ -11,6 +11,9 @@
 				"defaultValue": "01_client"
 			}
 		},
+		"folder": {
+			"name": "04_outbound"
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
