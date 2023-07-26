@@ -1,0 +1,32 @@
+{
+	"name": "ds_outbound",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_dl_data_engineering",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"client_directory_name": {
+				"type": "String",
+				"defaultValue": "01_client"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": {
+					"value": "@dataset().client_directory_name",
+					"type": "Expression"
+				},
+				"fileSystem": "outbound"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
