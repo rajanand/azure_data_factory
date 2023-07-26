@@ -3,15 +3,6 @@
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Stopped",
-		"pipeline": {
-			"pipelineReference": {
-				"referenceName": "pl_parameter_variable_demo",
-				"type": "PipelineReference"
-			},
-			"parameters": {
-				"p_client_folder": "02_client"
-			}
-		},
 		"type": "TumblingWindowTrigger",
 		"typeProperties": {
 			"frequency": "Minute",
