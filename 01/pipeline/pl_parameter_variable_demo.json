@@ -1,0 +1,131 @@
+{
+	"name": "pl_parameter_variable_demo",
+	"properties": {
+		"description": "copy the files to the folder with current timestamp.",
+		"activities": [
+			{
+				"name": "dynamic_copy_data",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "get_pipeline_start_time",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "inbound/@{pipeline().parameters.p_client_folder}/"
+					},
+					{
+						"name": "Destination",
+						"value": "outbound/@{pipeline().parameters.p_client_folder}/"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"wildcardFolderPath": {
+								"value": "@pipeline().parameters.p_client_folder",
+								"type": "Expression"
+							},
+							"wildcardFileName": "*",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_inbound",
+						"type": "DatasetReference",
+						"parameters": {
+							"client_directory_name": {
+								"value": "@pipeline().parameters.p_client_folder",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_outbound",
+						"type": "DatasetReference",
+						"parameters": {
+							"client_directory_name": {
+								"value": "@concat(\n    pipeline().parameters.p_client_folder,\n    '/',\n    formatDateTime(utcnow(),'yyyyMMdd_hhmmss')\n    )",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			},
+			{
+				"name": "get_pipeline_start_time",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "start_time",
+					"value": {
+						"value": "@utcnow()",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"p_client_folder": {
+				"type": "string",
+				"defaultValue": "02_client"
+			}
+		},
+		"variables": {
+			"start_time": {
+				"type": "String"
+			},
+			"end_time": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
